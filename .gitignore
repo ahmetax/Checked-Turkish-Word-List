@@ -145,6 +145,8 @@ env.bak/
 venv.bak/
 e312/
 
+kaynak_metnler/
+
 # Spyder project settings
 .spyderproject
 .spyproject
