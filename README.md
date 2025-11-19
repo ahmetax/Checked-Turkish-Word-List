@@ -31,7 +31,6 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
    ```bash
    python3.12 -m venv e312
    source e312/bin/activate
-   pip install -r requirements.txt
    ```
 2. Gerekli kütüphaneleri kurun:
    ```bash
@@ -45,7 +44,7 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
    ```bash
    mkdir kaynak_metnler
    ```
-4. kaynak_metnler klasörünün içine Türkçe metin dosyalarını kopyalayın.
+4. kaynak_metnler klasörünün içine istediğiniz Türkçe metin dosyalarını kopyalayın.
 
 5. Kelime toplayıcıyı çalıştırın:
    ```bash
@@ -54,10 +53,10 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
    Her çalıştırmada yeni bulunan kelimeler alfabetik olarak kelimeler.txt dosyasına eklenir.
    
 
-## Wikipedia'dan veri aktarımı ve kelimelere ayrıştırma
+## Wikipedia'dan veri aktarımı ve ayrık ve denetlenmiş kelimelere dönüştürme
 
 https://dumps.wikimedia.org/trwiki/latest/trwiki-latest-pages-articles.xml.bz2
-dosyasını indirin.
+dosyasını indirin. (Yaklaşık 1 GB)
 
 Bu dosyayı çalışma klasörünüze kopyalayın veya wiki_xml2txt.py dosyasında tam adresini verin.
 
@@ -88,6 +87,7 @@ Buradaki zemberek-full.jar dosyasını çalışma klasörünüze kopyalayın.
    python yeni_kelime_tara.py
    ```
 kesin_turkce_adaylari.txt dosyasındaki kelimeleri listenize ekleyebilirsiniz.
+Bu kelimeleri daha sonra daha ayrıntılı bir denetimden geçireceğiz.
 
 Not: trigram_model.txt dosyasını yeniden oluşturmak isterseniz:
 
