@@ -1,12 +1,13 @@
 # Denetlenmiş Türkçe Sözcük Dağarcığı
 Bu projede, güncel Türkçede geçerli olan ve genellikle hala kullanılan sözcüklerin bir listesini oluşturuyoruz.
-Bu projeye örnek veri sağlamak için elimdeki 2 milyonluk listeden yaklaşık 50 bin adedini kullanacağım. 
-Bu sayının hem github açısından sorun teşkil etmeyeceğini, hem de kodların çalışması açısından yeterli
-olacağını umuyorum. Gerekirse sayılarda değişiklikler yapabilirim. 
+Elimdeki 2 milyonluk listeyi burada paylaşmayacağım. 
+Github, dosya boyutu konusunda katı kısıtlamalara sahip.
+Bunu aşmak da mümkün elbette, ama, pek kullanıcı dostu değil bana göre.
+O yüzden size hazır bir liste sunmak yerine, sizinle, benim elimdeki gibi bir Türkçe Sözcük Dağarcığını elde etmenizi sağlayacak araçlar paylaşacağım. 
 
-Belki de başlangıç kodu olarak bir "kelime toplayıcı" hazırlamak daha iyi olacak.
+Bbaşlangıç kodu olarak basit bir "kelime toplayıcı" hazırlamak iyi olacak.
 
-Kod çalışmalarını hızlandırmak amacıyla Claude, Gemini ve Grok'u kodlama danışmanı olarak kullanacağım.
+Kod çalışmalarını hızlandırmak amacıyla Claude, Gemini ve Grok'u kodlama danışmanı olarak kullanıyorum.
 Ana kodlama dilimiz Python olacak.
 Veritabanı yöneticisi olarak SQLite kullanacağız.
 Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (zemberek-full-0.17.1.jar) bulunacak.
@@ -14,8 +15,8 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
 ## YAPILACAKLAR LİSTESİ
 
 1. Kelime Toplayıcı (Tamamlandı)
-2. Wikipedia'dan kelime toplamak Tamamlandı)
-3. Veritabanı ve tabloları oluşturmak
+2. Wikipedia'dan kelime toplayıcı (Tamamlandı)
+3. Veritabanı ve tabloları oluşturma
 4. Güncel zemberek-full.jar dosyasının indirilmesi
 5. Kelime Analizleri
 
