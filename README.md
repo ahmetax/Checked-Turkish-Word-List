@@ -14,7 +14,7 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
 ## YAPILACAKLAR LİSTESİ
 
 1. Kelime Toplayıcı (Tamamlandı)
-2. Wikipedia'dan kelime toplamak
+2. Wikipedia'dan kelime toplamak Tamamlandı)
 3. Veritabanı ve tabloları oluşturmak
 4. Güncel zemberek-full.jar dosyasının indirilmesi
 5. Kelime Analizleri
@@ -40,7 +40,7 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
    ```bash
    pip install -r requirements.txt
    ``` 
-3. Kaynak metinleri içerecek bir klasör açın:
+3. Kaynak metinleri içine koyacağınız bir klasör açın:
    ```bash
    mkdir kaynak_metnler
    ```
@@ -53,4 +53,48 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
    Her çalıştırmada yeni bulunan kelimeler alfabetik olarak kelimeler.txt dosyasına eklenir.
    
 
+## Wikipedia'dan veri aktarımı ve kelimelere ayrıştırma
+
+https://dumps.wikimedia.org/trwiki/latest/trwiki-latest-pages-articles.xml.bz2
+dosyasını indirin.
+
+Bu dosyayı çalışma klasörünüze kopyalayın veya wiki_xml2txt.py dosyasında tam adresini verin.
+
+wiki_xml2txt.py betiğini çalıştırın. (Bu işlem biraz uzun sürebilir. Yaklaşık 1,580,000 makale işlenecek.)
+
+   ```bash
+   python wiki_xml2txt.py
+   ```
+Şimdi elinizde tr_corpus_wiki.txt isimli bir dosya olmalı. Boyutu 2GB civarındadır. 
+Bu dosyanın içindeki bilgiler doğrudan işimize yaramaz. 
+O yüzden yeni_kelime_tara.py betiği aracılığıyla corpus dosyasından kelime adaylarını çıkaracağız.
+Bu betik, zemberek-full.jar dosyasına ihtiyaç duyar.
+
+### Zemberek jar dosyasının indirilmesi
+
+Zemberek projesi  https://github.com/ahmetaa/zemberek-nlp adresinde bulunur.
+Dağıtım dosyaları içinse bir Google-drive adresi verilmiştir:
+https://drive.google.com/#folders/0B9TrB39LQKZWSjNKdVcwWUxxUm8
+Bağlandığınız drive ana sayfasından distributions klasörüne geçin ve 0.17.1 sürümünü indirin.
+İnecek dosyanın adı 0.17.1-20251119T073639Z-1-001.zip benzeri olmalıdır.
+Bu zip dosyasını açın. 
+Elde edeceğiniz klasörün altındaki 0.17.1 isimli klasöre girin.
+Buradaki zemberek-full.jar dosyasını çalışma klasörünüze kopyalayın.
+
+### Yeni kelimelerin çıkarılması
+
+   ```bash
+   python yeni_kelime_tara.py
+   ```
+kesin_turkce_adaylari.txt dosyasındaki kelimeleri listenize ekleyebilirsiniz.
+
+Not: trigram_model.txt dosyasını yeniden oluşturmak isterseniz:
+
+   ```bash
+   python build_trigram_model.py
+   ```
+betiğini kullanabilirsiniz.
+
+
+   
    
