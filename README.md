@@ -35,7 +35,7 @@ or
 pip install -r requirements.txt
 ```
 
-3. Create a folder to place the source text in Open:
+3. Create a folder to place the source text:
 ```bash
 mkdir kaynak_metnler
 ```
@@ -47,7 +47,7 @@ mkdir kaynak_metnler
 python kelime_toplayici.py
 ```
 
-With each run, newly found words are added alphabetically to the kelime.txt file.
+With each run, newly found words are added alphabetically to the kelimeler.txt file.
 
 ## Data transfer from Wikipedia and conversion into isolated and verified words
 
