@@ -9,7 +9,7 @@ To speed up the coding process, I'm using Claude, Gemini, and Grok as coding con
 ## TODO LIST
 1. Word Collector (Completed)
 2. Word Collector from Wikipedia (Completed)
-3. Creating the database and tables
+3. Creating the database and tables (Completed)
 4. Downloading the updated zemberek-full.jar file
 5. Word Analysis
 
@@ -77,6 +77,12 @@ You can use the command:
 python build_trigram_model.py script.
 ```
 
+### Creating Database and the Tables (lexicon.db - sozluk, kelimeler)
+
+   ```bash
+   python db_setup.py
+   ```
+
 
 # DENETLENMİŞ TÜRKÇE SÖZCÜK DAĞARCIĞI
 
@@ -97,7 +103,7 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
 
 1. Kelime Toplayıcı (Tamamlandı)
 2. Wikipedia'dan kelime toplayıcı (Tamamlandı)
-3. Veritabanı ve tabloları oluşturma
+3. Veritabanı ve tabloları oluşturma (Tamamlandı)
 4. Güncel zemberek-full.jar dosyasının indirilmesi
 5. Kelime Analizleri
 
@@ -177,6 +183,11 @@ Not: trigram_model.txt dosyasını yeniden oluşturmak isterseniz:
    ```
 betiğini kullanabilirsiniz.
 
+### Veritabanı ve tabloların oluşturulması (lexicon.db - sozluk, kelimeler)
 
+   ```bash
+   python db_setup.py
+   ```
+   
    
    
