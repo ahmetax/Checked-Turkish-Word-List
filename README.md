@@ -1,11 +1,92 @@
-# Denetlenmiş Türkçe Sözcük Dağarcığı
+# A VERIFIED TURKISH WORDLIST
+
+In this project, we're creating a list of words that are still commonly used in current Turkish. I won't share my existing 2 million-word list here. Github has strict file size restrictions. It's certainly possible to bypass this, but I don't think it's very user-friendly. So, instead of providing you with a ready-made list, I'll share tools that will allow you to create a Turkish vocabulary similar to the one I have.
+
+It would be a good idea to create a simple "word collector" as a starting code.
+
+To speed up the coding process, I'm using Claude, Gemini, and Grok as coding consultants. Our primary coding language will be Python. We'll use SQLite as our database manager. The latest version of the Zemberek library (zemberek-full-0.17.1.jar) will be the core of our word analysis.
+
+## TODO LIST
+1. Word Collector (Completed)
+2. Word Collector from Wikipedia (Completed)
+3. Creating the database and tables
+4. Downloading the updated zemberek-full.jar file
+5. Word Analysis
+
+## Using the Word Collector
+
+1. Clone this repo:
+```bash
+git clone https://github.com/ahmetax/Checked-Turkish-Word-List.git
+cd Checked-Turkish-Word-List
+```
+I recommend using a virtual environment: (The following codes are for Ubuntu 24.04. Adapt them to your own system.)
+```bash
+python3.12 -m venv e312
+source e312/bin/activate
+```
+
+2. Install the required libraries:
+```bash
+pip install python-docx ebooklib beautifulsoup4 PyPDF2 tqdm
+```
+or
+```bash
+pip install -r requirements.txt
+```
+
+3. Create a folder to place the source text in Open:
+```bash
+mkdir kaynak_metnler
+```
+
+4. Copy the desired Turkish text files into the kaynak_metnler folder.
+
+5. Run the word collector:
+```bash
+python kelime_toplayici.py
+```
+
+With each run, newly found words are added alphabetically to the kelime.txt file.
+
+## Data transfer from Wikipedia and conversion into isolated and verified words
+
+Download the file https://dumps.wikimedia.org/trwiki/latest/trwiki-latest-pages-articles.xml.bz2. (Approximately 1 GB)
+
+Copy this file to your working folder or provide the full address in wiki_xml2txt.py.
+
+Run the wiki_xml2txt.py script. (This may take a while. Approximately 1,580,000 articles will be processed.)
+```bash
+python wiki_xml2txt.py
+```
+You should now have a file named tr_corpus_wiki.txt. It is approximately 2 GB in size. The information in this file is of no direct use to us. Therefore, we will extract word candidates from the corpus file using the yeni_kelime_tara.py script. This script requires the zemberek-full.jar file.
+
+### Downloading the Zemberek jar file
+The Zemberek project is located at https://github.com/ahmetaa/zemberek-nlp. A Google Drive address is provided for the distribution files: https://drive.google.com/#folders/0B9TrB39LQKZWSjNKdVcwWUxxUm8. From the Drive homepage, navigate to the distributions folder and download version 0.17.1. The downloaded file should be named something like 0.17.1-20251119T073639Z-1-001.zip. Unzip this zip file. Go to the folder named 0.17.1 within the resulting folder. Copy the zemberek-full.jar file from there to your working folder.
+
+### Collecting new words
+```bash
+python yeni_kelime_tara.py
+```
+You can add the words in the file kesin_turkce_adaylari.txt to your list. We will examine these words more thoroughly later.
+
+Note: If you want to rebuild the trigram_model.txt file:
+
+You can use the command:
+```bash
+python build_trigram_model.py script.
+```
+
+
+# DENETLENMİŞ TÜRKÇE SÖZCÜK DAĞARCIĞI
+
 Bu projede, güncel Türkçede geçerli olan ve genellikle hala kullanılan sözcüklerin bir listesini oluşturuyoruz.
 Elimdeki 2 milyonluk listeyi burada paylaşmayacağım. 
 Github, dosya boyutu konusunda katı kısıtlamalara sahip.
 Bunu aşmak da mümkün elbette, ama, pek kullanıcı dostu değil bana göre.
 O yüzden size hazır bir liste sunmak yerine, sizinle, benim elimdeki gibi bir Türkçe Sözcük Dağarcığını elde etmenizi sağlayacak araçlar paylaşacağım. 
 
-Bbaşlangıç kodu olarak basit bir "kelime toplayıcı" hazırlamak iyi olacak.
+Başlangıç kodu olarak basit bir "kelime toplayıcı" hazırlamak iyi olacak.
 
 Kod çalışmalarını hızlandırmak amacıyla Claude, Gemini ve Grok'u kodlama danışmanı olarak kullanıyorum.
 Ana kodlama dilimiz Python olacak.
