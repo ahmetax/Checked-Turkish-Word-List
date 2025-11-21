@@ -16,7 +16,10 @@ To speed up the coding process, I'm using Claude, Gemini, and Grok as coding con
 2. Word Collector from Wikipedia (Completed)
 3. Creating the database and tables (Completed)
 4. Downloading the updated zemberek-full.jar file (Completed)
-5. Word Analysis
+5. Obtaining yeni_kesin_turkce_adaylari.txt from tr_corpus_wiki.txt (Completed)
+6. Creating lexicon.db database
+7. Importing collected words into the database
+
 
 ## Using the Word Collector
 
@@ -79,7 +82,7 @@ Note: If you want to rebuild the trigram_model.txt file:
 
 You can use the command:
 ```bash
-python build_trigram_model.py script.
+python build_trigram_model.py
 ```
 
 ### Creating Database and the Tables (lexicon.db - sozluk, kelimeler)
@@ -110,7 +113,9 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
 2. Wikipedia'dan kelime toplayıcı (Tamamlandı)
 3. Veritabanı ve tabloları oluşturma (Tamamlandı)
 4. Güncel zemberek-full.jar dosyasının indirilmesi (Tamamlandı)
-5. Kelime Analizleri
+5. tr_corpus_wiki.txt dosyasından yeni_kesin_turkce_adaylari.txt dosyasının elde edilmesi (Tamamlandı)
+6. tr_lexicon.db veritabanının oluşturulması (Tamamlandı)
+7. Toplanan kelimelerin veritabanına aktarılması
 
 ## Kelime Toplayıcı Kullanımı
 
