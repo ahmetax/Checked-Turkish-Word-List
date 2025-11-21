@@ -8,6 +8,8 @@ from typing import List, Set, Dict, Tuple
 from tqdm import tqdm # İlerleme çubuğu için
 import itertools # İlerlemeyi daha iyi yönetmek için
 import math
+import time
+from aktalib import show_time
 
 # Zemberek importu ve başlatılması
 # DİKKAT: Zemberek'in her alt süreçte (child process) yeniden başlatılması gerekir.
@@ -34,9 +36,9 @@ except ImportError:
 # --- Yapılandırma ve Eşik Değerleri (Aynı Kalıyor) ---
 OT_ALT_ESIK = 0.0616  
 OY_UST_ESIK = 0.01044  
-DB_PATH = 'file_index.db'
-KESIN_TURKCE_CIKTI = 'kesin_turkce_adaylari.txt'
-OLASI_TURKCE_CIKTI = 'olasi_turkce_adaylari.txt'
+
+KESIN_TURKCE_CIKTI = 'yeni_kesin_turkce_adaylari.txt'
+OLASI_TURKCE_CIKTI = 'yeni_olasi_turkce_adaylari.txt'
 
 SESLI_HARFLER = set('aâeıiîoöuü')
 TURKISH_CHARS = set('çğıöşü')
@@ -48,22 +50,6 @@ VALID_CHARS = set('abcçdefgğhıijklmnoöprsştuüvyz')
 TR_MODEL = {}
 TOTAL_TRIGRAM_COUNT = 0
 TRGRAM_ALT_ESIK = -11.0 # DENEME EŞİĞİ: Bu değeri ayarlamamız gerekebilir.
-
-def get_files_from_db(db_path: str) -> List[str]:
-    """SQLite veritabanından dosya yollarını alır."""
-    file_paths = []
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        # files tablosunun 'path' veya 'file_path' gibi bir sütun içerdiğini varsayıyoruz
-        cursor.execute("SELECT path FROM files") 
-        file_paths = [row[0] for row in cursor.fetchall()]
-        conn.close()
-    except sqlite3.Error as e:
-        print(f"Veritabanı hatası: {e}")
-    except Exception as e:
-        print(f"Genel hata: {e}")
-    return file_paths
 
 def get_files_from_folder(folder_path: str, extensions: Tuple[str] = ('.txt', '.doc', '.pdf')) -> List[str]:
     """Bir klasördeki (alt klasörler dahil) metin dosyalarını bulur."""
@@ -330,34 +316,27 @@ def dosyaya_yaz_optimizeli(candidates: Dict[str, Set[str]]):
         print(f"UYARI: {OLASI_TURKCE_CIKTI} dosyası işlenirken beklenmedik hata oluştu: {e}")
         return {'KESIN': set(), 'OLASI': set()}
 
-
 def main(target: str, mode: str):
     """Ana program akışını yönetir."""
+    t0 = time.time()    # Başlangıç zamanı
     
     # ... (Lexicon yükleme kısmı aynı kalır)
     # 1. Mevcut tr_lexicon.txt içeriğini yükle
-    # ... (Kodu yerleştirin)
     lexicon = set()
     try:
-        with open('/home/axax/Videos/yapayzeka/GUNLUK_HABERLER/YWRITER/tr_lexicon.txt', 'r', encoding='utf-8') as f:
+        with open('tr_lexicon.txt', 'r', encoding='utf-8') as f:
             lexicon.update(line.strip().lower() for line in f if line.strip())
         print(f"'{len(lexicon)}' kelime mevcut lexikon'dan yüklendi.")
     except FileNotFoundError:
-        print("tr_lexicon.txt dosyası bulunamadı. Boş bir lexikon ile devam ediliyor.")
+        print("tr_lexicon.txt dosyası bulunamadı. Boş bir lexicon ile devam ediliyor.")
     
-    
-    # ... (Dosya yolu belirleme kısmı aynı kalır: path, db, folder)
-    # ... (get_files_from_db ve get_files_from_folder fonksiyonları da eklenmelidir.)
-    # ... (Bu fonksiyonları önceki kodunuzdan buraya eklediğinizi varsayıyorum.)
     all_files_to_process = []
     if mode == 'path':
         all_files_to_process = [target]
-    elif mode == 'db':
-        all_files_to_process = get_files_from_db(DB_PATH)
     elif mode == 'folder':
         all_files_to_process = get_files_from_folder(target)
     else:
-        print("Geçersiz mod belirlendi. (path, db, folder olmalı)")
+        print("Geçersiz mod belirlendi. (path veya folder olmalı)")
         return
     
     load_trigram_model()
@@ -391,33 +370,10 @@ def main(target: str, mode: str):
     print(f"Yeni KESİN Türkçe Adayı (Morfolojik onaylı): {len(final_candidates['KESIN']):,} kelime.")
     print(f"Yeni OLASI Türkçe Adayı (Kural uyumlu): {len(final_candidates['OLASI']):,} kelime.")
     print(f"Sonuçlar '{KESIN_TURKCE_CIKTI}' ve '{OLASI_TURKCE_CIKTI}' dosyalarında mevcuttur.")
+    # print(f"Toplam zaman: {time.time() - t0:.2f} saniye.")
+    show_time("Toplam çalışma süresi", t0, t0)
 
 if __name__ == "__main__":
     # Tekrar deneme amaçlı kullanım:
     main('tr_corpus_wiki.txt', 'path')
     # main('kaynak_metnler/', 'folder') 
-    # main('mydb.db', 'db') 
-
-# if __name__ == "__main__":
-#     # 3-Gram Eşiğini belirlemek için test kelimeleri
-#     trigram_test_words = [
-#         # İYİ TÜRKÇE (Yüksek puan beklenen)
-#         "kitaplık", "abacıdan", "önceliklendirecek", "müteahhit", "programlama",
-        
-#         # ANLAMSIZ (Çok düşük puan beklenen)
-#         "aaada", "aaadır", "qqqwx", "yiyiyi", "öşüçği", 
-        
-#         # YABANCI / DÜŞÜK OLASILIKLI (Orta-Düşük puan beklenen)
-#         "parkinson", "nörodejeneratif", "gimbal", "kovid" 
-#     ]
-    
-#     # 1. 3-Gram modelini yükle
-#     load_trigram_model()
-    
-#     # 2. Puan analizini çalıştır
-#     analyze_trigram_scores(trigram_test_words)
-
-#     # 3. Yorum: Analiz sonucuna göre TRGRAM_ALT_ESIK değerini belirle
-#     # Örneğin, 'aaada' -18.0, 'kitaplık' -5.0 çıktıysa, eşiği -10.0 olarak belirle.
-    
-#     # main('tr_corpus_wiki.txt', 'path')

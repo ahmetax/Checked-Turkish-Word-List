@@ -10,7 +10,7 @@ To speed up the coding process, I'm using Claude, Gemini, and Grok as coding con
 1. Word Collector (Completed)
 2. Word Collector from Wikipedia (Completed)
 3. Creating the database and tables (Completed)
-4. Downloading the updated zemberek-full.jar file
+4. Downloading the updated zemberek-full.jar file (Completed)
 5. Word Analysis
 
 ## Using the Word Collector
@@ -68,7 +68,7 @@ The Zemberek project is located at https://github.com/ahmetaa/zemberek-nlp. A Go
 ```bash
 python yeni_kelime_tara.py
 ```
-You can add the words in the file kesin_turkce_adaylari.txt to your list. We will examine these words more thoroughly later.
+You can add the words in the file yeni_kesin_turkce_adaylari.txt to your list. We will examine these words more thoroughly later.
 
 Note: If you want to rebuild the trigram_model.txt file:
 
@@ -104,7 +104,7 @@ Kelime analizlerimizin çekirdeğinde Zemberek kütüphanesinin son sürümü (z
 1. Kelime Toplayıcı (Tamamlandı)
 2. Wikipedia'dan kelime toplayıcı (Tamamlandı)
 3. Veritabanı ve tabloları oluşturma (Tamamlandı)
-4. Güncel zemberek-full.jar dosyasının indirilmesi
+4. Güncel zemberek-full.jar dosyasının indirilmesi (Tamamlandı)
 5. Kelime Analizleri
 
 ## Kelime Toplayıcı Kullanımı
@@ -173,7 +173,7 @@ Buradaki zemberek-full.jar dosyasını çalışma klasörünüze kopyalayın.
    ```bash
    python yeni_kelime_tara.py
    ```
-kesin_turkce_adaylari.txt dosyasındaki kelimeleri listenize ekleyebilirsiniz.
+yeni_kesin_turkce_adaylari.txt dosyasındaki kelimeleri listenize ekleyebilirsiniz.
 Bu kelimeleri daha sonra daha ayrıntılı bir denetimden geçireceğiz.
 
 Not: trigram_model.txt dosyasını yeniden oluşturmak isterseniz:
