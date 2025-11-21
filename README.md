@@ -1,5 +1,10 @@
 # A VERIFIED TURKISH WORDLIST
 
+<p align="center">
+  <img src="https://github.com/ahmetax/Checked-Turkish-Word-List/blob/main/images/Gemini_Generated_Image_pw895pw895pw895p.png" alt="Checked-Turkish-Word-List Proje Tanıtım Infografiği" width="70%">
+</p>
+
+
 In this project, we're creating a list of words that are still commonly used in current Turkish. I won't share my existing 2 million-word list here. Github has strict file size restrictions. It's certainly possible to bypass this, but I don't think it's very user-friendly. So, instead of providing you with a ready-made list, I'll share tools that will allow you to create a Turkish vocabulary similar to the one I have.
 
 It would be a good idea to create a simple "word collector" as a starting code.
