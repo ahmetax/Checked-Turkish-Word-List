@@ -17,7 +17,7 @@ To speed up the coding process, I'm using Claude, Gemini, and Grok as coding con
 3. Creating the database and tables (Completed)
 4. Downloading the updated zemberek-full.jar file (Completed)
 5. Obtaining yeni_kesin_turkce_adaylari.txt from tr_corpus_wiki.txt (Completed)
-6. Creating lexicon.db database
+6. Creating lexicon.db database (Completed)
 7. Importing collected words into the database
 
 
