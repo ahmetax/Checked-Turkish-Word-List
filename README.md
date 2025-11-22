@@ -1,3 +1,6 @@
+# BU PROJE DerlemTR PROJESİ OLARAK DEVAM EDECEKTİR.
+# LÜTFEN <a href="https://github.com/ahmetax/derlemtr" target="_blank">DERLEMTR</a> ADRESİNE GİDİN!
+
 # A VERIFIED TURKISH WORDLIST
 
 <p align="center">
